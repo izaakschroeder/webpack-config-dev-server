@@ -1,0 +1,31 @@
+{
+  "name": "webpack-config-dev-server",
+  "version": "0.3.0",
+  "author": "Izaak Schroeder <izaak.schroeder@gmail.com>",
+  "repository": "izaakschroeder/webpack-config-metalab",
+  "license": "CC0-1.0",
+  "main": "dist/dev-server.webpack.config.js",
+  "scripts": {
+    "prepublish": "./node_modules/.bin/babel -s -d dist src",
+    "lint": "./node_modules/.bin/eslint .",
+    "test": "npm run lint"
+  },
+  "peerDependencies": {
+    "webpack": "*",
+    "webpack-udev-server": "*"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.4.5",
+    "babel-preset-metalab": "^0.2.0",
+    "eslint": "^1.10.3",
+    "eslint-config-metalab": "^2.0.0-beta.1",
+    "eslint-plugin-filenames": "^0.2.0",
+    "eslint-plugin-import": "^0.12.1",
+    "eslint-plugin-react": "^3.16.1",
+    "webpack": "^1.12.12",
+    "webpack-udev-server": "^0.4.1"
+  },
+  "dependencies": {
+    "webpack-partial": "^1.1.2"
+  }
+}
