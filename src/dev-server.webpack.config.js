@@ -1,14 +1,15 @@
 import {partial, inject} from 'webpack-partial';
 import {runtime} from 'webpack-udev-server';
 
-export default ({hot = process.env.HOT}) => (config) => {
-  const {entry, target} = config;
-  const env = process.env.NODE_ENV || 'development';
+export default () => (config) => {
+  const {entry, target, plugins = []} = config;
 
-  // Don't use for anything but development.
-  if (env !== 'development') {
-    return config;
-  }
+  // Detect whether or not HMR is enabled to enable hot on the dev server.
+  // NOTE: This means devServer has to come _after_ hot is configured.
+  // TODO: Checking constructor name might be a little brittle.
+  const hot = plugins.some((plugin) => {
+    return plugin.constructor.name === 'HotModuleReplacementPlugin';
+  });
 
   // Rewrite all the entry points to include HMR code.
   return partial(config, {
